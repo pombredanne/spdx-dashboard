@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Spec version:</b>
+  <%= @spdx_doc.spec_version %>
+</p>
+
+<p>
+  <b>Comment:</b>
+  <%= @spdx_doc.comment_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_spdx_doc_path(@spdx_doc) %> |
+<%= link_to 'Back', spdx_docs_path %>
