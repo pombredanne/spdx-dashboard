@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  spdx_doc_id: 1
+  name: MyString
+  filename: MyString
+  download_location: MyString
+  checksum_id: 1
+  copyright: MyText
+  version: MyString
+  description: MyText
+  summary: MyText
+  originator: MyString
+  supplier: MyString
+
+two:
+  spdx_doc_id: 1
+  name: MyString
+  filename: MyString
+  download_location: MyString
+  checksum_id: 1
+  copyright: MyText
+  version: MyString
+  description: MyText
+  summary: MyText
+  originator: MyString
+  supplier: MyString

@@ -11,7 +11,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130304200222) do
+ActiveRecord::Schema.define(:version => 20130304202129) do
+
+  create_table "packages", :force => true do |t|
+    t.integer  "spdx_doc_id"
+    t.string   "name"
+    t.string   "filename"
+    t.string   "download_location"
+    t.integer  "checksum_id"
+    t.text     "copyright"
+    t.string   "version"
+    t.text     "description"
+    t.text     "summary"
+    t.string   "originator"
+    t.string   "supplier"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
 
   create_table "spdx_docs", :force => true do |t|
     t.string   "spec_version"
