@@ -1,7 +1,7 @@
 SpdxDashboard::Application.routes.draw do
   resources :spdx_docs
 
-
+  root to: "spdx_docs#index"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
