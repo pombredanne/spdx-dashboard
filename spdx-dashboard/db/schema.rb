@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130306063020) do
+ActiveRecord::Schema.define(:version => 20130306063422) do
 
   create_table "checksums", :force => true do |t|
     t.integer  "owner_id"
@@ -37,7 +37,6 @@ ActiveRecord::Schema.define(:version => 20130306063020) do
     t.integer  "package_id"
     t.string   "name"
     t.string   "type"
-    t.string   "checksum_id"
     t.string   "copyright_text"
     t.string   "artifact_name"
     t.string   "artifact_homepage"
