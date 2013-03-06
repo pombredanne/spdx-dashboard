@@ -14,4 +14,5 @@ class PackageFile < ActiveRecord::Base
   belongs_to :package
   belongs_to :license_declared, class_name: "License"
   belongs_to :license_concluded, class_name: "License"
+  has_one :checksum, as: :owner
 end
