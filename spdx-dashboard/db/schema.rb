@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130304203151) do
+ActiveRecord::Schema.define(:version => 20130306061522) do
 
   create_table "checksums", :force => true do |t|
     t.integer  "owner_id"
@@ -20,6 +20,17 @@ ActiveRecord::Schema.define(:version => 20130304203151) do
     t.string   "value"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "licenses", :force => true do |t|
+    t.text     "content"
+    t.text     "notice"
+    t.string   "name"
+    t.boolean  "osi_approved"
+    t.text     "standard_header"
+    t.string   "cross_reference"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "packages", :force => true do |t|
