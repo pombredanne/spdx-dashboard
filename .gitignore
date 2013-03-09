@@ -1,5 +1,5 @@
 .DS_Store
-spdx-dashboard/.bundle
-spdx-dashboard/config/database.yml
-spdx-dashboard/log/*.log
-spdx-dashboard/tmp
+app/.bundle
+app/config/database.yml
+app/log/*.log
+app/tmp
