@@ -16,4 +16,6 @@ class PackageFile < ActiveRecord::Base
   belongs_to :license_concluded, class_name: "License"
   has_one :checksum, as: :owner
   has_many :optional_fields, as: :owner
+  has_many :licensings
+  has_many :licenses, through: :licensings
 end

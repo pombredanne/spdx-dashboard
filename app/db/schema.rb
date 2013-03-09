@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130306063713) do
+ActiveRecord::Schema.define(:version => 20130309013954) do
 
   create_table "checksums", :force => true do |t|
     t.integer  "owner_id"
@@ -29,6 +29,15 @@ ActiveRecord::Schema.define(:version => 20130306063713) do
     t.boolean  "osi_approved"
     t.text     "standard_header"
     t.string   "cross_reference"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  create_table "licensings", :force => true do |t|
+    t.integer  "license_id"
+    t.integer  "package_file_id"
+    t.boolean  "conjunctive"
+    t.boolean  "official"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
   end
