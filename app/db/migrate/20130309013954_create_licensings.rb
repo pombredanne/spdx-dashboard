@@ -4,7 +4,7 @@ class CreateLicensings < ActiveRecord::Migration
       t.integer :license_id
       t.integer :package_file_id
       t.boolean :conjunctive
-      t.boolean :official
+      t.boolean :official, default: false
 
       t.timestamps
     end

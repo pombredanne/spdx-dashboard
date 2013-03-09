@@ -37,9 +37,9 @@ ActiveRecord::Schema.define(:version => 20130309013954) do
     t.integer  "license_id"
     t.integer  "package_file_id"
     t.boolean  "conjunctive"
-    t.boolean  "official"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.boolean  "official",        :default => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
   end
 
   create_table "optional_fields", :force => true do |t|
