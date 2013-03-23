@@ -1,5 +1,6 @@
 <table class="table table-striped">
   <tr>
+    <th>File name</th>
     <th>Date uploaded</th>
     <th>Spec version</th>
     <th>Comment</th>
@@ -9,11 +10,12 @@
 
   <% spdx_docs.each do |spdx_doc| %>
     <tr>
+      <td><%= spdx_doc.upload_file_name %></td>
       <td><%= spdx_doc.created_at %></td>
       <td><%= spdx_doc.spec_version %></td>
       <td><%= spdx_doc.comment_id %></td>
       <td><%= link_to 'View', spdx_doc %></td>
-      <td><%= link_to 'Download', "#" %></td>
+      <td><%= link_to 'Download', spdx_doc.upload.url %></td>
     </tr>
   <% end %>
 </table>
