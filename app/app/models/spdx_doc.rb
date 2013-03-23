@@ -24,4 +24,34 @@ class SpdxDoc < ActiveRecord::Base
     return "n/a" unless spec_version.present?
     spec_version
   end
+
+  # Parsing and relationship methods
+  def parse_tag!
+    tag_file = File.open(upload.path)
+
+    # Get SPDX info
+    line = tag_file.first
+    if line.match /SPDXVersion: (.+)/
+      puts $1
+      self.spec_version = $1.delete("\r")
+    end
+
+    line = tag_file.first
+    if line.match /DataLicense: (.+)/
+      puts $1
+      self.data_license = $1.delete("\r")
+    end
+
+    line = tag_file.first
+    if line.match /DocumentComment: <text>(.+)<\/text>/
+      puts $1
+      self.document_comment = $1.delete("\r")
+    end
+
+    # Get package information
+
+    # Get file information
+
+    save
+  end
 end

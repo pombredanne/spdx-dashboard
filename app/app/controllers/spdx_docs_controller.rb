@@ -45,6 +45,7 @@ class SpdxDocsController < ApplicationController
 
     respond_to do |format|
       if @spdx_doc.save
+        @spdx_doc.parse_tag!
         format.html { redirect_to @spdx_doc, notice: 'Spdx doc was successfully created.' }
         format.json { render json: @spdx_doc, status: :created, location: @spdx_doc }
       else
