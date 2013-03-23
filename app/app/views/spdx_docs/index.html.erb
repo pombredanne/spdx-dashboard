@@ -1,5 +1,12 @@
 <h1>SPDX Documents</h1>
 
-<%= link_to 'Upload SPDX (.tag)', new_spdx_doc_path, class: "btn" %>
+  <span class="span2">
+    <%= link_to 'Upload SPDX (.tag)', new_spdx_doc_path, class: "btn" %>
+  </span>
+
+  <span class="span3">
+    <%= render partial: "shared/search_form" %>
+  </span>
+
 
 <%= render partial: "spdx_table", locals: {spdx_docs: @spdx_docs} %>
