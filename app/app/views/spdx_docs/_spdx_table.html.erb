@@ -1,0 +1,19 @@
+<table class="table table-striped">
+  <tr>
+    <th>Date uploaded</th>
+    <th>Spec version</th>
+    <th>Comment</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% spdx_docs.each do |spdx_doc| %>
+    <tr>
+      <td><%= spdx_doc.created_at %></td>
+      <td><%= spdx_doc.spec_version %></td>
+      <td><%= spdx_doc.comment_id %></td>
+      <td><%= link_to 'View', spdx_doc %></td>
+      <td><%= link_to 'Download', "#" %></td>
+    </tr>
+  <% end %>
+</table>
