@@ -3,6 +3,7 @@ class SpdxDocsController < ApplicationController
   # GET /spdx_docs.json
   def index
     @spdx_docs = SpdxDoc.all
+    @spdx_doc = SpdxDoc.new
 
     respond_to do |format|
       format.html # index.html.erb

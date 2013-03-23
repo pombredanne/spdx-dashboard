@@ -1,8 +1,12 @@
 source 'https://rubygems.org'
 
+# Fundamentals
 gem 'rails', '3.2.11'
-
 gem 'mysql2'
+
+gem 'paperclip' # attachments
+
+gem 'kaminari' # pagination
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
