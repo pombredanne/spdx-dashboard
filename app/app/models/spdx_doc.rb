@@ -11,4 +11,11 @@ class SpdxDoc < ActiveRecord::Base
   def name
     upload_file_name
   end
+
+  def birthday
+    str_formatter = "%B %d"
+    str_formatter += ", %Y" unless created_at.year == Time.current.year
+    str_formatter += " - %l:%M %P"
+    date = created_at.strftime(str_formatter)
+  end
 end
