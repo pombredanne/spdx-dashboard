@@ -7,4 +7,8 @@ class SpdxDoc < ActiveRecord::Base
 
   validates_attachment :upload, presence: true,
   content_type: { content_type: "application/octet-stream" }
+
+  def name
+    upload_file_name
+  end
 end

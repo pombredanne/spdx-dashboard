@@ -8,7 +8,7 @@
 
   <% spdx_docs.each do |spdx_doc| %>
     <tr>
-      <td><%= spdx_doc.upload_file_name %></td>
+      <td><%= spdx_doc.name %></td>
       <td><%= spdx_doc.created_at %></td>
       <td><%= link_to 'View', spdx_doc %></td>
       <td><%= link_to 'Download', spdx_doc.upload.url %></td>
