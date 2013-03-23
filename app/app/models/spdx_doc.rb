@@ -8,6 +8,7 @@ class SpdxDoc < ActiveRecord::Base
   validates_attachment :upload, presence: true,
   content_type: { content_type: "application/octet-stream" }
 
+  # Friendly name methods
   def name
     upload_file_name
   end
@@ -17,5 +18,10 @@ class SpdxDoc < ActiveRecord::Base
     str_formatter += ", %Y" unless created_at.year == Time.current.year
     str_formatter += " - %l:%M %P"
     date = created_at.strftime(str_formatter)
+  end
+
+  def version
+    return "n/a" unless spec_version.present?
+    spec_version
   end
 end
