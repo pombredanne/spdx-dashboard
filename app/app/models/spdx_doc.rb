@@ -6,5 +6,5 @@ class SpdxDoc < ActiveRecord::Base
   has_attached_file :upload
 
   validates_attachment :upload, presence: true,
-  content_type: { content_type: "text/plain" }
+  content_type: { content_type: "application/octet-stream" }
 end

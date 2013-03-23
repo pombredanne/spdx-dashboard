@@ -1,10 +1,13 @@
 <h1>SPDX Documents</h1>
 
   <span class="span2">
-    <%= link_to 'Upload SPDX (.tag)', new_spdx_doc_path, class: "btn" %>
+    <%= form_for @spdx_doc, html: { multipart: true } do |f| %>
+      <%= f.file_field :upload %>
+      <%= f.submit "Upload" %>
+    <% end %>
   </span>
 
-  <span class="span3">
+  <span class="search span4">
     <%= render partial: "shared/search_form" %>
   </span>
 

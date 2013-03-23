@@ -3,3 +3,4 @@ app/.bundle
 app/config/database.yml
 app/log/*
 app/tmp/*
+app/public/system/*
