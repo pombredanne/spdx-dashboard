@@ -1,0 +1,29 @@
+<% @page_title = "#{@spdx_doc.name} > Files" %>
+
+<h2><%= link_to "SPDX Docs", root_path %> > <%= link_to @spdx_doc.name , @spdx_doc %> > Files </h2>
+
+<hr>
+
+<div class="row-fluid">
+  <h4><%= @files.count %> files</h4>
+
+  <div class="span10">
+    <table class="table table-bordered table-striped">
+      <thead>
+        <th>File name</th>
+        <th>File type</th>
+        <th></th>
+      </thead>
+
+      <tbody>
+        <% @files.each do |file| %>
+          <tr>
+            <td><%= file.name_without_path %></td>
+            <td><%= file.file_type %>
+            <td><%= link_to "View", [@spdx_doc, file] %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

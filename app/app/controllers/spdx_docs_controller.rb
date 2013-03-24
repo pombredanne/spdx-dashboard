@@ -83,4 +83,15 @@ class SpdxDocsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def files
+    @spdx_doc = SpdxDoc.find(params[:id])
+    @package = @spdx_doc.package
+    @files = @package.files
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @files }
+    end
+  end
 end

@@ -1,0 +1,38 @@
+<% @page_title = "#{@spdx_doc.name} > Files > #{@file.name_without_path}" %>
+
+<h3>
+  <%= link_to "SPDX Docs", root_path %>
+  >
+  <%= link_to @spdx_doc.name, @spdx_doc %>
+  >
+  <%= link_to "Files", files_spdx_doc_path(@spdx_doc) %>
+  >
+  <%= @file.name_without_path %>
+</h3>
+
+<hr>
+
+<div class="row-fluid">
+  <h4>File Info</h4>
+  <div class="span10">
+    <table class="table table-bordered">
+      <tbody>
+        <tr>
+          <td class="tr-title">File type</td>
+          <td><%= @file.file_type %></td>
+        </tr>
+        <tr>
+          <td class="tr-title">License concluded</td>
+          <td>n/a</td>
+        <tr>
+          <td class="tr-title">License declared</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td class="tr-title">Comment</td>
+          <td>n/a</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
