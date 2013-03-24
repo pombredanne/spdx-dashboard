@@ -2,7 +2,7 @@ class SpdxDocsController < ApplicationController
   # GET /spdx_docs
   # GET /spdx_docs.json
   def index
-    @spdx_docs = SpdxDoc.all
+    @spdx_docs = SpdxDoc.scoped.order('created_at DESC')
     @spdx_doc = SpdxDoc.new
 
     respond_to do |format|
@@ -15,6 +15,7 @@ class SpdxDocsController < ApplicationController
   # GET /spdx_docs/1.json
   def show
     @spdx_doc = SpdxDoc.find(params[:id])
+    @package = @spdx_doc.package
 
     respond_to do |format|
       format.html # show.html.erb

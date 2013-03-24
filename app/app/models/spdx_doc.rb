@@ -28,6 +28,7 @@ class SpdxDoc < ActiveRecord::Base
   # Parsing and relationship methods
   def parse_tag!
     tag_file = File.open(upload.path)
+    lines = File.readlines(upload.path)
 
     # Get SPDX info
     line = tag_file.first
@@ -49,9 +50,51 @@ class SpdxDoc < ActiveRecord::Base
     end
 
     # Get package information
+    package = self.build_package
+
+    package_lines = lines.select { |line| line[/^Package/] }
+    package_lines.each do |line|
+      if line.match /PackageName: (.+)/
+        package.name = $1.delete("\r")
+      end
+
+      if line.match /PackageVersion: (.+)/
+        package.version = $1.delete("\r")
+      end
+
+      if line.match /PackageDownloadLocation: (.+)/
+        package.download_location = $1.delete("\r")
+      end
+
+      if line.match /PackageSummary: (.+)/
+        package.summary = $1.delete("\r")
+      end
+
+      if line.match /PackageFileName: (.+)/
+        package.filename = $1.delete("\r")
+      end
+
+      if line.match /PackageSupplier: (.+)/
+        package.supplier = $1.delete("\r")
+      end
+
+      if line.match /PackageOriginator: (.+)/
+        package.originator = $1.delete("\r")
+      end
+
+      if line.match /PackageDescription: <text>(.+)<\/text>/
+        package.description = $1.delete("\r")
+      end
+
+      if line.match /PackageCopyrightText: <text>(.+)<\/text>/
+        package.copyright = $1.delete("\r")
+      end
+    end
+    package.save
 
     # Get file information
 
+    package.save
     save
   end
 end

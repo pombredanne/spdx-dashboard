@@ -10,11 +10,15 @@
     <table class="table table-bordered">
       <tbody>
         <tr>
-          <td>Uploaded</td>
+          <td class="tr-title">File name</td>
+          <td><%= @spdx_doc.name %></td>
+        </tr>
+        <tr>
+          <td class="tr-title">Date uploaded</td>
           <td><%= @spdx_doc.birthday %></td>
         </tr>
         <tr>
-          <td>SPDX version</td>
+          <td class="tr-title">SPDX version</td>
           <td><%= @spdx_doc.version %></td>
         </tr>
       </tbody>
@@ -32,12 +36,36 @@
     <table class="table table-bordered">
       <tbody>
         <tr>
-          <td>Uploaded</td>
-          <td><%= @spdx_doc.birthday %></td>
+          <td class="tr-title">Name</td>
+          <td><%= @package.name %></td>
         </tr>
         <tr>
-          <td>SPDX version</td>
-          <td><%= @spdx_doc.version %></td>
+          <td class="tr-title">Filename</td>
+          <td><%= @package.filename %></td>
+        </tr>
+        <tr>
+          <td class="tr-title">Package version</td>
+          <td><%= @package.version %></td>
+        </tr>
+        <tr>
+          <td class="tr-title">Originator</td>
+          <td><%= @package.originator %></td>
+        </tr>
+        <tr>
+          <Td class="tr-title">Supplier</td>
+          <td><%= @package.supplier %></td>
+        </tr>
+        <tr>
+          <td class="tr-title">Download location</td>
+          <td><%= @package.download_location %></td>
+        </tr>
+        <tr>
+          <td class="tr-title">Description</td>
+          <td><%= @package.description %></td>
+        </tr>
+        <tr>
+          <td class="tr-title">Copyright</td>
+          <td><%= @package.copyright %></td>
         </tr>
       </tbody>
     </table>
