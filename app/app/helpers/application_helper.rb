@@ -6,4 +6,16 @@ module ApplicationHelper
     str_formatter += " - %l:%M %P"
     date = datetime.strftime(str_formatter)
   end
+
+  def comments_header(owner)
+    header = link_to("SPDX Docs", root_path)
+
+    if owner.is_a? SpdxDoc
+      header += raw " > #{link_to owner.name, owner} > Comments"
+    elsif owner.is_a? Package
+      header += raw " > #{link_to owner.spdx_doc.name, owner.spdx_doc} > Package > Comments"
+    end
+
+    header  
+  end
 end

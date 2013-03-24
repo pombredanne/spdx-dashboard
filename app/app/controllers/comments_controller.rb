@@ -2,7 +2,8 @@ class CommentsController < ApplicationController
   before_filter :get_owner
 
   def index
-    @comments = @owner.comments
+    @comments = @owner.comments.order("created_at ASC")
+    @comment = @owner.comments.new
 
     respond_to do |format|
       format.html
