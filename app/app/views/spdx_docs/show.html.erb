@@ -1,11 +1,11 @@
 <% @page_title = @spdx_doc.name %>
 
-<h2><%= link_to "SPDX Docs", root_path %> > <%= @page_title %></h2>
+<h1><%= link_to "SPDX Docs", root_path %> > <%= @page_title %></h1>
 
 <hr>
 
 <div class="row-fluid">
-  <h4>Document Info</h4>
+  <h3>Document Info</h3>
   <div class="span6">
     <table class="table table-bordered">
       <tbody>
@@ -32,23 +32,36 @@
   <div class="span5">
     <%= form_for [@spdx_doc, @spdx_comment] do |f| %>
         <%= f.text_area :content, rows: 5, placeholder: "Comment on this SPDX document" %>
-        <%= f.submit "Add comment" %>
+        <%= f.submit "Add comment", class: "btn btn-primary" %>
+        <% if @spdx_doc.comments.present? %>
+          <%= link_to "View comments (#{@spdx_doc.comments.count})", spdx_doc_comments_path(@spdx_doc), class: "btn" %>
+        <% end %>
     <% end %>
+  </div>
+
+  <div class="span6">
+    <%= link_to "Download .tag", @spdx_doc.upload.url, class: "btn" %>
+
   </div>
 </div>
 
 <div class="row-fluid">
-  <h4>Package Info</h4>
+  <h3>Package Info</h3>
   <div class="span6">
     <table class="table table-bordered">
       <tbody>
         <tr>
-          <td class="tr-title">Name</td>
+          <td class="tr-title">Package name</td>
           <td><%= @package.name %></td>
         </tr>
         <tr>
           <td class="tr-title">File name</td>
           <td><%= @package.filename %></td>
+        </tr>
+        <tr>
+          <td class="tr-title">Package files</td>
+          <td><%= link_to "#{@package.files.count} total (click to view)", 
+          files_spdx_doc_path(@spdx_doc) %></td>
         </tr>
         <tr>
           <td class="tr-title">Package version</td>
@@ -74,11 +87,6 @@
           <td class="tr-title">Copyright</td>
           <td><%= @package.copyright %></td>
         </tr>
-        <tr>
-          <td class="tr-title">Number of files</td>
-          <td><%= link_to "#{@package.files.count} (click to view)", 
-          files_spdx_doc_path(@spdx_doc) %></td>
-        </tr>
       </tbody>
     </table>
   </div>
@@ -86,7 +94,14 @@
   <div class="span5">
     <%= form_for [@package, @package_comment] do |f| %>
       <%= f.text_area :content, rows: 5, placeholder: "Comment on this package" %>
-      <%= f.submit "Add comment" %>
+      <%= f.submit "Add comment", class: "btn btn-primary" %>
+      <% if @package.comments.present? %>
+        <%= link_to "View comments (#{@package.comments.count})", package_comments_path(@package), class: "btn" %>
+      <% end %>
     <% end %>
+  </div>
+
+  <div class="span6">
+    <%= link_to "View files (#{@package.files.count})", files_spdx_doc_path(@spdx_doc), class: "btn" %>
   </div>
 </div>

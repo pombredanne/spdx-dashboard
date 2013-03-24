@@ -1,11 +1,11 @@
 <% @page_title = "#{@spdx_doc.name} > Files" %>
 
-<h2><%= link_to "SPDX Docs", root_path %> > <%= link_to @spdx_doc.name , @spdx_doc %> > Files </h2>
+<h1><%= link_to "SPDX Docs", root_path %> > <%= link_to @spdx_doc.name , @spdx_doc %> > Files </h1>
 
 <hr>
 
 <div class="row-fluid">
-  <h4><%= @files.count %> files</h4>
+  <h2><%= @files.count %> files</h2>
 
   <div class="span11">
     <table class="table table-bordered table-striped">
