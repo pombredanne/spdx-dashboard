@@ -13,5 +13,7 @@ SpdxDashboard::Application.routes.draw do
   
   resources :package_files
 
+  resources :licenses
+
   root to: "spdx_docs#index"
 end

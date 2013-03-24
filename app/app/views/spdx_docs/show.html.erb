@@ -92,7 +92,7 @@
           <td>
             <ul id="licenses" class="unstyled">
               <% @spdx_doc.licenses.each do |license| %>
-                <li><%= license.name %></li>
+                <li><%= link_to license.name, license %></li>
               <% end %>
             </ul>
           </td>

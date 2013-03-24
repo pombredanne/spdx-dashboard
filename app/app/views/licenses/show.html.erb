@@ -1,0 +1,12 @@
+<% @page_title = @license.name %>
+
+<h1>License: <%= @page_title %></h1>
+  <p><%= @license.content %></p>
+<hr>
+
+<div class="row-fluid">
+
+  <h2>Included in</h2>
+
+  <%= render partial: "spdx_docs/spdx_table", locals: {spdx_docs: @license.spdx_docs} %>
+</div>

@@ -109,6 +109,8 @@ class SpdxDoc < ActiveRecord::Base
         end
 
         license = License.create_or_find_for({ name: license_name, content: license_content })
+        license.content = license_content
+        license.save
 
         ref             = self.license_refs.build
         ref.license_id  = license.id
