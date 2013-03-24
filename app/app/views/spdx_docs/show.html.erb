@@ -87,6 +87,15 @@
           <td class="tr-title">Copyright</td>
           <td><%= @package.copyright %></td>
         </tr>
+        <tr>
+          <td class="tr-title">Licenses</td>
+          <td>
+            <ul id="licenses" class="unstyled">
+              <% @spdx_doc.licenses.each do |license| %>
+                <li><%= license.name %></li>
+              <% end %>
+            </ul>
+          </td>
       </tbody>
     </table>
   </div>

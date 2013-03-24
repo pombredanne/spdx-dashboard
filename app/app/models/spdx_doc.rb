@@ -28,23 +28,23 @@ class SpdxDoc < ActiveRecord::Base
 
     ## PARSE DOCUMENT INFO
     tag_file.each_line do |line|
-      if line.match /SPDXVersion: (.+)/
+      if line.match /^SPDXVersion: (.+)/
         self.spec_version = $1.delete("\r")
       end
 
-      if line.match /DataLicense: (.+)/
+      if line.match /^DataLicense: (.+)/
         self.data_license = $1.delete("\r")
       end
 
-      if line.match /DocumentComment: <text>(.+)<\/text>/
+      if line.match /^DocumentComment: <text>(.+)<\/text>/
         self.document_comment = $1.delete("\r")
       end
 
-      if line.match /CreatorComment: <text>(.+)<\/text>/
+      if line.match /^CreatorComment: <text>(.+)<\/text>/
         self.creator_coment = $1.delete("\r")
       end
 
-      if line.match /Created: (.+)/
+      if line.match /^Created: (.+)/
         self.generated_at = $1.delete("\r").to_datetime
       end
     end
@@ -54,52 +54,73 @@ class SpdxDoc < ActiveRecord::Base
 
     package_lines = lines.select { |line| line[/^Package/] }
     package_lines.each do |line|
-      if line.match /PackageName: (.+)/
+      if line.match /^PackageName: (.+)/
         package.name = $1.delete("\r")
       end
 
-      if line.match /PackageVersion: (.+)/
+      if line.match /^PackageVersion: (.+)/
         package.version = $1.delete("\r")
       end
 
-      if line.match /PackageDownloadLocation: (.+)/
+      if line.match /^PackageDownloadLocation: (.+)/
         package.download_location = $1.delete("\r")
       end
 
-      if line.match /PackageSummary: (.+)/
+      if line.match /^PackageSummary: (.+)/
         package.summary = $1.delete("\r")
       end
 
-      if line.match /PackageFileName: (.+)/
+      if line.match /^PackageFileName: (.+)/
         package.filename = $1.delete("\r")
       end
 
-      if line.match /PackageSupplier: (.+)/
+      if line.match /^PackageSupplier: (.+)/
         package.supplier = $1.delete("\r")
       end
 
-      if line.match /PackageOriginator: (.+)/
+      if line.match /^PackageOriginator: (.+)/
         package.originator = $1.delete("\r")
       end
 
-      if line.match /PackageDescription: <text>(.+)<\/text>/
+      if line.match /^PackageDescription: <text>(.+)<\/text>/
         package.description = $1.delete("\r")
       end
 
-      if line.match /PackageCopyrightText: <text>(.+)<\/text>/
+      if line.match /^PackageCopyrightText: <text>(.+)<\/text>/
         package.copyright = $1.delete("\r")
       end
     end
     package.save
 
+    self.reload
 
+    ## PARSE LICENSE REFS
     lines.each_with_index do |line, index|
-      ## PARSE LICENSE INFO
       if line.match /^LicenseID: (.+)/
-        license = License.new(name: $1.delete("\r"))
-      end
+        ref_name = $1.delete("\r")
 
-      ## PARSE FILE INFO
+        if lines[index + 1].match /^ExtractedText: <text>(.+)<\/text>/
+          license_content = $1.delete("\r")
+        end
+
+        if lines[index + 2].match /^LicenseName: (.+)/
+          license_name = $1.delete("\r")
+        end
+
+        license = License.create_or_find_for({ name: license_name, content: license_content })
+
+        ref             = self.license_refs.build
+        ref.license_id  = license.id
+        ref.ref_name    = ref_name
+        ref.save
+        puts ref.reload.inspect
+      end
+    end
+
+    self.reload
+
+    ## PARSE FILE INFO
+    lines.each_with_index do |line, index|
       if line.match /^FileName: (.+)/
         package_file = package.files.new(name: $1.delete("\r"))
 
@@ -112,11 +133,30 @@ class SpdxDoc < ActiveRecord::Base
         end
 
         if lines[index + 3].match /^LicenseConcluded: (.+)/
-          # handle license concluded
+          license_or_ref = $1.delete("\r")
+
+          if license_or_ref.match /^LicenseRef/
+            puts license_or_ref
+            license_ref = license_refs.find_by_ref_name(license_or_ref)
+            license = license_ref.license
+          else
+            license = License.create_or_find_for(name: license_or_ref)
+          end
+
+          package_file.license_concluded_id = license.id
         end
 
         if lines[index + 4].match /^LicenseInfoInFile: (.+)/
-          # handle license delcared
+          license_or_ref = $1.delete("\r")
+
+          if license_or_ref.match /LicenseRef/
+            license_ref = self.license_refs.find_by_ref_name(license_or_ref)
+            license = license_ref.license
+          else
+            license = License.create_or_find_for(name: license_or_ref)
+          end
+
+          package_file.license_declared_id = license.id
         end
 
         if lines[index + 5].match /^FileCopyrightText: <text>(.+)<\/text>/
