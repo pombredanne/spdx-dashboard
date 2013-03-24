@@ -30,7 +30,7 @@ class SpdxDoc < ActiveRecord::Base
     tag_file = File.open(upload.path)
     lines = File.readlines(upload.path)
 
-    # Get SPDX info
+    ## PARSE DOCUMENT INFO
     line = tag_file.first
     if line.match /SPDXVersion: (.+)/
       puts $1
@@ -49,7 +49,7 @@ class SpdxDoc < ActiveRecord::Base
       self.document_comment = $1.delete("\r")
     end
 
-    # Get package information
+    ## PARSE PACKAGE INFO
     package = self.build_package
 
     package_lines = lines.select { |line| line[/^Package/] }
@@ -92,9 +92,35 @@ class SpdxDoc < ActiveRecord::Base
     end
     package.save
 
-    # Get file information
+    ## PARSE FILE INFO
+    lines.each_with_index do |line, index|
+      if line.match /^FileName: (.+)/
+        package_file = package.files.new(name: $1.delete("\r"))
 
-    package.save
+        if lines[index + 1].match /^FileType: (.+)/
+          package_file.file_type = $1.delete("\r")
+        end
+
+        if lines[index + 2].match /^FileChecksum: (.+)/
+          # handle checksum
+        end
+
+        if lines[index + 3].match /^LicenseConcluded: (.+)/
+          # handle license concluded
+        end
+
+        if lines[index + 4].match /^LicenseInfoInFile: (.+)/
+          # handle license delcared
+        end
+
+        if lines[index + 5].match /^FileCopyrightText: <text>(.+)<\/text>/
+          package_file.copyright_text = $1.delete("\r");
+        end
+
+        package_file.save
+      end
+    end
+
     save
   end
 end
