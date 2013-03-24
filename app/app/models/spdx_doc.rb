@@ -4,6 +4,8 @@ class SpdxDoc < ActiveRecord::Base
   has_one :package
   has_many :optional_fields, as: :owner
   has_many :comments, as: :owner
+  has_many :license_refs
+  has_many :licenses, through: :license_refs
   has_attached_file :upload
 
   validates_attachment :upload, presence: true,
@@ -90,8 +92,14 @@ class SpdxDoc < ActiveRecord::Base
     end
     package.save
 
-    ## PARSE FILE INFO
+
     lines.each_with_index do |line, index|
+      ## PARSE LICENSE INFO
+      if line.match /^LicenseID: (.+)/
+        license = License.new(name: $1.delete("\r"))
+      end
+
+      ## PARSE FILE INFO
       if line.match /^FileName: (.+)/
         package_file = package.files.new(name: $1.delete("\r"))
 

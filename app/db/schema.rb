@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130324040139) do
+ActiveRecord::Schema.define(:version => 20130324084438) do
 
   create_table "checksums", :force => true do |t|
     t.integer  "owner_id"
@@ -29,6 +29,13 @@ ActiveRecord::Schema.define(:version => 20130324040139) do
     t.integer  "creator_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "license_refs", :force => true do |t|
+    t.integer  "license_id"
+    t.integer  "spdx_doc_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "licenses", :force => true do |t|
