@@ -21,6 +21,17 @@ class SpdxDoc < ActiveRecord::Base
     spec_version
   end
 
+  def ensure_encoding(line)
+    require 'iconv' unless String.method_defined?(:encode)
+    if String.method_defined?(:encode)
+      line.encode!('UTF-8', 'UTF-8', :invalid => :replace)
+    else
+      ic = Iconv.new('UTF-8', 'UTF-8//IGNORE')
+      line = ic.iconv(line)
+    end
+    line
+  end
+
   # Parsing and relationship methods
   def parse_tag!
     tag_file = File.open(upload.path)
@@ -28,6 +39,7 @@ class SpdxDoc < ActiveRecord::Base
 
     ## PARSE DOCUMENT INFO
     tag_file.each_line do |line|
+      ensure_encoding(line)
       if line.match /^SPDXVersion: (.+)/
         self.spec_version = $1.delete("\r")
       end
@@ -41,7 +53,7 @@ class SpdxDoc < ActiveRecord::Base
       end
 
       if line.match /^CreatorComment: <text>(.+)<\/text>/
-        self.creator_coment = $1.delete("\r")
+        self.creator_comment = $1.delete("\r")
       end
 
       if line.match /^Created: (.+)/
@@ -53,8 +65,9 @@ class SpdxDoc < ActiveRecord::Base
     ## PARSE PACKAGE INFO
     package = self.build_package
 
-    package_lines = lines.select { |line| line[/^Package/] }
+    package_lines = lines.select { |line| ensure_encoding(line)[/^Package/] }
     package_lines.each do |line|
+      line = ensure_encoding(line)
       if line.match /^PackageName: (.+)/
         package.name = $1.delete("\r")
       end
@@ -97,6 +110,7 @@ class SpdxDoc < ActiveRecord::Base
 
     ## PARSE LICENSE REFS
     lines.each_with_index do |line, index|
+      line = ensure_encoding(line)
       if line.match /^LicenseID: (.+)/
         ref_name = $1.delete("\r")
 
@@ -123,6 +137,7 @@ class SpdxDoc < ActiveRecord::Base
 
     ## PARSE FILE INFO
     lines.each_with_index do |line, index|
+      line = ensure_encoding(line)
       if line.match /^FileName: (.+)/
         package_file = package.files.new(name: $1.delete("\r"))
 
