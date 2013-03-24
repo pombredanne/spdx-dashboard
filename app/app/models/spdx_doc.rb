@@ -48,6 +48,7 @@ class SpdxDoc < ActiveRecord::Base
         self.generated_at = $1.delete("\r").to_datetime
       end
     end
+    self.save
 
     ## PARSE PACKAGE INFO
     package = self.build_package
@@ -113,7 +114,6 @@ class SpdxDoc < ActiveRecord::Base
         ref.license_id  = license.id
         ref.ref_name    = ref_name
         ref.save
-        puts ref.reload.inspect
       end
     end
 
@@ -136,7 +136,6 @@ class SpdxDoc < ActiveRecord::Base
           license_or_ref = $1.delete("\r")
 
           if license_or_ref.match /^LicenseRef/
-            puts license_or_ref
             license_ref = license_refs.find_by_ref_name(license_or_ref)
             license = license_ref.license
           else
