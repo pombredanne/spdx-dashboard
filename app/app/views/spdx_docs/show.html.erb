@@ -15,7 +15,11 @@
         </tr>
         <tr>
           <td class="tr-title">Date uploaded</td>
-          <td><%= @spdx_doc.birthday %></td>
+          <td><%= friendly_date(@spdx_doc.created_at) %></td>
+        </tr>
+        <tr>
+          <td class="tr-title">Date generated</td>
+          <td><%= friendly_date(@spdx_doc.generated_at) %></td>
         </tr>
         <tr>
           <td class="tr-title">SPDX version</td>
@@ -26,7 +30,10 @@
   </div>
 
   <div class="span5">
-    Comment field
+    <%= form_for [@spdx_doc, @spdx_comment] do |f| %>
+        <%= f.text_area :content, rows: 5, placeholder: "Comment on this SPDX document" %>
+        <%= f.submit "Add comment" %>
+    <% end %>
   </div>
 </div>
 
@@ -77,6 +84,9 @@
   </div>
 
   <div class="span5">
-    Comment field
+    <%= form_for [@package, @package_comment] do |f| %>
+      <%= f.text_area :content, rows: 5, placeholder: "Comment on this package" %>
+      <%= f.submit "Add comment" %>
+    <% end %>
   </div>
 </div>

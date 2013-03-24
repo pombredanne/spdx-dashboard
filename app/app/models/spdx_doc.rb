@@ -3,6 +3,7 @@ class SpdxDoc < ActiveRecord::Base
 
   has_one :package
   has_many :optional_fields, as: :owner
+  has_many :comments, as: :owner
   has_attached_file :upload
 
   validates_attachment :upload, presence: true,
@@ -11,13 +12,6 @@ class SpdxDoc < ActiveRecord::Base
   # Friendly name methods
   def name
     upload_file_name
-  end
-
-  def birthday
-    str_formatter = "%B %d"
-    str_formatter += ", %Y" unless created_at.year == Time.current.year
-    str_formatter += " - %l:%M %P"
-    date = created_at.strftime(str_formatter)
   end
 
   def version
@@ -31,22 +25,26 @@ class SpdxDoc < ActiveRecord::Base
     lines = File.readlines(upload.path)
 
     ## PARSE DOCUMENT INFO
-    line = tag_file.first
-    if line.match /SPDXVersion: (.+)/
-      puts $1
-      self.spec_version = $1.delete("\r")
-    end
+    tag_file.each_line do |line|
+      if line.match /SPDXVersion: (.+)/
+        self.spec_version = $1.delete("\r")
+      end
 
-    line = tag_file.first
-    if line.match /DataLicense: (.+)/
-      puts $1
-      self.data_license = $1.delete("\r")
-    end
+      if line.match /DataLicense: (.+)/
+        self.data_license = $1.delete("\r")
+      end
 
-    line = tag_file.first
-    if line.match /DocumentComment: <text>(.+)<\/text>/
-      puts $1
-      self.document_comment = $1.delete("\r")
+      if line.match /DocumentComment: <text>(.+)<\/text>/
+        self.document_comment = $1.delete("\r")
+      end
+
+      if line.match /CreatorComment: <text>(.+)<\/text>/
+        self.creator_coment = $1.delete("\r")
+      end
+
+      if line.match /Created: (.+)/
+        self.generated_at = $1.delete("\r").to_datetime
+      end
     end
 
     ## PARSE PACKAGE INFO

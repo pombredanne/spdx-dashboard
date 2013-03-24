@@ -4,4 +4,5 @@ class Package < ActiveRecord::Base
   has_one :checksum, as: :owner
   has_many :optional_fields, as: :owner
   has_many :files, class_name: "PackageFile"
+  has_many :comments, as: :owner
 end

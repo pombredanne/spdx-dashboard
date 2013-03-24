@@ -14,3 +14,7 @@ tr {
     background-color: rgb(249, 249, 249);
   }
 }
+
+#new_comment {
+  textarea { width: 100%; }
+}

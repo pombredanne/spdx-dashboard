@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130324013645) do
+ActiveRecord::Schema.define(:version => 20130324040139) do
 
   create_table "checksums", :force => true do |t|
     t.integer  "owner_id"
@@ -95,7 +95,6 @@ ActiveRecord::Schema.define(:version => 20130324013645) do
   create_table "spdx_docs", :force => true do |t|
     t.string   "spec_version"
     t.string   "data_license"
-    t.integer  "comment_id"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
     t.string   "upload_file_name"
@@ -103,6 +102,8 @@ ActiveRecord::Schema.define(:version => 20130324013645) do
     t.integer  "upload_file_size"
     t.datetime "upload_updated_at"
     t.text     "document_comment"
+    t.text     "creator_comment"
+    t.datetime "generated_at"
   end
 
 end

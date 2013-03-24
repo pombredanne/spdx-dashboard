@@ -15,7 +15,9 @@ class SpdxDocsController < ApplicationController
   # GET /spdx_docs/1.json
   def show
     @spdx_doc = SpdxDoc.find(params[:id])
+    @spdx_comment = @spdx_doc.comments.new
     @package = @spdx_doc.package
+    @package_comment = @package.comments.new
 
     respond_to do |format|
       format.html # show.html.erb

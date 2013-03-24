@@ -18,9 +18,14 @@ class PackageFile < ActiveRecord::Base
   has_many :optional_fields, as: :owner
   has_many :licensings
   has_many :licenses, through: :licensings
+  has_many :comments, as: :owner
 
   def name_without_path
     return name unless name.match /.tar\/(.+)/
     $1
+  end
+
+  def spdx_doc
+    package.spdx_doc
   end
 end
