@@ -1,22 +1,3 @@
 <% @page_title = "SPDX Documents" %>
-<h1><%= @page_title %></h1>
-
-<span class="span6">
-  <%= form_for @spdx_doc, html: { class: "form-horizontal well", multipart: true } do |f| %>
-    <div class="control-group">
-      <%= f.label "Add tag file", class: "control-label" %>
-      <div class="controls">
-        <%= f.file_field :upload %>
-      </div>
-    </div>
-
-    <div class="control-group">
-      <div class="controls">
-        <%= f.submit "Upload", class: "btn btn-primary" %>
-      </div>
-    </div>
-  <% end %>
-</span>
-
 
 <%= render partial: "spdx_table", locals: {spdx_docs: @spdx_docs} %>

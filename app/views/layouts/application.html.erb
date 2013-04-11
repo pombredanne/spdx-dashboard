@@ -46,18 +46,16 @@
           </a>
           <%= link_to "SPDX Dashboard", root_path, class: "brand" %>
           <div class="container-fluid nav-collapse">
-            <!-- <ul class="nav">
-              <li><%= link_to "Link1", "/path1"  %></li>
-              <li><%= link_to "Link2", "/path2"  %></li>
-              <li><%= link_to "Link3", "/path3"  %></li>
-            </ul> -->
+            <ul class="nav">
+              <li><%= render partial: "spdx_docs/upload_form", locals: {spdx_doc: @new_spdx} %></li>
+            </ul>
           </div><!--/.nav-collapse -->
         </div>
       </div>
     </div>
 
     <div class="container-fluid">
-      <div class="row-fluid">
+      <div class="center-container row-fluid">
         <div class="span12">
           <%= bootstrap_flash %>
           <%= yield %>
@@ -65,7 +63,7 @@
       </div><!--/row-->
 
       <footer>
-        <p>&copy; Company 2013</p>
+        <small>&copy; University of Nebraska at Omaha <%= Time.current.year %></small>
       </footer>
 
     </div> <!-- /container -->

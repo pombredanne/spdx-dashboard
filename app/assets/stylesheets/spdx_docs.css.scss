@@ -2,7 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
+#upload_form {
+  .error {
+    font-weight: bold;
+    color: red;
+  }
+}
 .form-search { 
   input { width: 175px !important; }
 
@@ -15,22 +20,46 @@ tr {
   }
 }
 
+#new_spdx_doc { display: none; }
 #new_comment {
   textarea { width: 100%; }
 }
 
 table.table-spdx {
   td { 
-    vertical-align: middle;
     text-align: center;
+  }
+
+  td.td-timestamp {
+    border-right-color: transparent;
+    padding-top: 0px;
+    padding-left: 0px;
+    font-weight: bold;
+    color: #9da0a4;
+
+    p {
+      text-align: center;
+      padding-top: 0px;
+      padding-left: 0px;
+      border: 1px solid rgb(225,225,232);
+      border-top: none;
+      border-left: none;
+    }
   }
 
   td.td-main {
     line-height: 2em;
     font-size: 2em;
+    padding: 0px;
+    border-left-color: transparent;
+
+    .corner-heading {
+      vertical-align: middle;
+      height: 100%;
+    }
   }
 
-  td.controls {
+  td.td-controls {
     width: 20%;
   }
 }

@@ -2,10 +2,13 @@ module ApplicationHelper
 
   def friendly_date(datetime)
     return "n/a" if datetime.nil?
-    str_formatter = "%B %d"
+    str_formatter = "%b %d"
     str_formatter += ", %Y" unless datetime.year == Time.current.year
-    str_formatter += " - %l:%M %P"
     date = datetime.strftime(str_formatter)
+  end
+
+  def friendly_time(datetime)
+    datetime.strftime("%l:%M %P")
   end
 
   def comments_header(owner)
