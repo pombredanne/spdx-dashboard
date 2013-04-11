@@ -1,0 +1,25 @@
+  <table class="table table-bordered">
+    <thead>
+      <th></th>
+      <th><%= @doc1.name %> (1)</th>
+      <th><%= @doc2.name %> (2)</th>
+    </thead>
+    <tbody>
+
+      <% @file_diffs[:added].each do |file| %>
+        <tr class="success">
+          <td class="tr-title"><%= file.name %></td>
+          <td></td>
+          <td></td>
+        </tr>
+      <% end %>
+
+      <% @file_diffs[:deleted].each do |file| %>
+        <tr class="error">
+          <td class="tr-title"><%= file.name_without_path %></td>
+          <td></td>
+          <td></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>

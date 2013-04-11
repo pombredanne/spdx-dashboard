@@ -8,6 +8,7 @@
     color: red;
   }
 }
+
 .form-search { 
   input { width: 175px !important; }
 
@@ -19,7 +20,10 @@ tr {
     background-color: rgb(249, 249, 249);
   }
 }
-
+th { 
+  text-align: center;
+  border: 0; 
+}
 #new_spdx_doc { display: none; }
 #new_comment {
   textarea { width: 100%; }
@@ -61,5 +65,31 @@ table.table-spdx {
 
   td.td-controls {
     width: 20%;
+  }
+}
+
+#compare {
+  .alert-info {
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+  }
+}
+.comparisons {
+  float: right;
+
+  span {
+    padding-left: 10px;
+  }
+  .deleted {
+    color: rgb(185, 74, 72);
+  }
+
+  .added {
+    color: rgb(70, 136, 71);
+  }
+
+  .changed {
+    color: rgb(192, 152, 83);
   }
 }

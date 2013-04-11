@@ -59,15 +59,14 @@
         <div class="span12">
           <%= bootstrap_flash %>
           <%= yield %>
+          <hr>
         </div>
       </div><!--/row-->
-
-      <footer class="greybox greybox-bordered">
-        <small>&copy; University of Nebraska at Omaha <%= Time.current.year %></small>
-      </footer>
-
     </div> <!-- /container -->
-
+    <hr>
+    <footer>
+      <p><small>&copy; University of Nebraska at Omaha <%= Time.current.year %></small><p>
+    </footer>
     <!-- Javascripts
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

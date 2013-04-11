@@ -20,11 +20,10 @@
   max-width: 960px;
 }
  
-footer { 
+footer {
   margin-top: 20px;
-  padding: 1px 10px;
+  text-align: center;
 }
-
 /* RAILS SCAFFOLDS */
 #notice {
   color: green;

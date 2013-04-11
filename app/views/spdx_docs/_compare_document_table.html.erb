@@ -1,0 +1,66 @@
+<table class="table table-bordered">
+  <thead>
+    <th></th>
+    <th><%= @doc1.name %> (1)</th>
+    <th><%= @doc2.name %> (2)</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="tr-title">Document creator</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class="tr-title">Created date</td>
+      <td><%= friendly_date(@doc1.created_at) %></td>
+      <td><%= friendly_date(@doc2.created_at) %></td>
+    </tr>
+    <tr>
+      <td class="tr-title">Document comment</td>
+      <td><%= @doc1.document_comment %></td>
+      <td><%= @doc2.document_comment %></td>
+    </tr>
+    <tr>
+      <td class="tr-title">Package name</td>
+      <td><%= @package1.name %></td>
+      <td><%= @package2.name %></td>
+    </tr>
+    <tr>
+      <td class="tr-title">Package version</td>
+      <td><%= @package1.version %></td>
+      <td><%= @package2.version %></td>
+    </tr>
+    <tr>
+      <td class="tr-title">Package Licenses Concluded</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class="tr-title">Package Copyright</td>
+      <td><%= @package1.copyright %></td>
+      <td><%= @package2.copyright %></td>
+    </tr>
+    <tr>
+      <td class="tr-title">Package file count</td>
+      <td><%= @files1.count %></td>
+      <td><%= @files2.count %></td>
+    </tr>
+    <tr>
+      <td class="tr-title">Package License Information</td>
+      <td>
+        <ul id="licenses" class="unstyled">
+          <% @doc1.licenses.each do |license| %>
+            <li><%= link_to license.name, license %></li>
+          <% end %>
+        </ul>
+      </td>
+      <td>
+        <ul id="licenses" class="unstyled">
+          <% @doc2.licenses.each do |license| %>
+            <li><%= link_to license.name, license %></li>
+          <% end %>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>

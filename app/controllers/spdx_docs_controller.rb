@@ -88,6 +88,21 @@ class SpdxDocsController < ApplicationController
   end
 
   def compare
-    @original_spdx = SpdxDoc.find(params[:id])
+    @doc1 = SpdxDoc.find(params[:id])
+    @package1 = @doc1.package
+    @files1 = @package1.files
+
+    @doc2 = SpdxDoc.find(params[:to])
+    @package2 = @doc2.package
+    @files2 = @package2.files
+
+    files1 = @files1.to_a
+    files2 = @files2.to_a
+    @file_diffs = {
+      added: (files2 - files1),
+      deleted: (files1 - files2),
+      changed: 0,
+      unchanged: 0
+    }
   end
 end
