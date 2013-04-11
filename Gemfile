@@ -3,7 +3,10 @@ source 'https://rubygems.org'
 # Fundamentals
 gem 'rails', '3.2.11'
 gem 'mysql2'
+
+# UI stuff
 gem "twitter-bootstrap-rails"
+gem "font-awesome-rails"
 
 gem 'paperclip' # attachments
 
