@@ -21,10 +21,10 @@
               download
             <% end %>
 
-            <%= link_to(compare_spdx_doc_path(spdx_doc), class: "btn") do %>
+            <a href="#doc_select" role="button" class="btn" data-toggle="modal" data-id="<%= spdx_doc.id %>">
               <i class="icon-exchange"></i>
               compare
-            <% end %>
+            </a>
           </div>
         </div>
       </td>

@@ -68,6 +68,17 @@ table.table-spdx {
   }
 }
 
+#doc_select {
+  table {
+    width: 100%;
+    text-align: center;
+    font-size: 1.2em;
+    td {
+      cursor: pointer;
+      border-bottom: 1px solid rgb(221, 221, 221);
+    }
+  }
+}
 #compare {
   .alert-info {
     width: 50%;
