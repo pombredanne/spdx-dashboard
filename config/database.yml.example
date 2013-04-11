@@ -1,0 +1,23 @@
+development:
+  adapter: mysql
+  database: spdxdashboard_dev
+  host: 127.0.0.1
+  username: db_user
+  password: db_password
+  timeout: 5000
+
+test:
+  adapter: mysql
+  database: spdxdashboard_test
+  host: 127.0.0.1
+  username: db_user
+  password: db_password
+  timeout: 5000
+
+production:
+  adapter: mysql
+  database: spdxdashboard_prod
+  host: 127.0.0.1
+  username: db_user
+  password: db_password
+  timeout: 5000
