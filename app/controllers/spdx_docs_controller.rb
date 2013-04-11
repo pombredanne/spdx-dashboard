@@ -1,6 +1,4 @@
 class SpdxDocsController < ApplicationController
-  # GET /spdx_docs
-  # GET /spdx_docs.json
   def index
     @spdx_docs = SpdxDoc.scoped.order('created_at DESC')
     @spdx_doc = SpdxDoc.new
@@ -11,8 +9,6 @@ class SpdxDocsController < ApplicationController
     end
   end
 
-  # GET /spdx_docs/1
-  # GET /spdx_docs/1.json
   def show
     @spdx_doc = SpdxDoc.find(params[:id])
     @spdx_comment = @spdx_doc.comments.new
@@ -25,8 +21,6 @@ class SpdxDocsController < ApplicationController
     end
   end
 
-  # GET /spdx_docs/new
-  # GET /spdx_docs/new.json
   def new
     @spdx_doc = SpdxDoc.new
 
@@ -36,13 +30,10 @@ class SpdxDocsController < ApplicationController
     end
   end
 
-  # GET /spdx_docs/1/edit
   def edit
     @spdx_doc = SpdxDoc.find(params[:id])
   end
 
-  # POST /spdx_docs
-  # POST /spdx_docs.json
   def create
     @spdx_doc = SpdxDoc.new(params[:spdx_doc])
 
@@ -58,8 +49,6 @@ class SpdxDocsController < ApplicationController
     end
   end
 
-  # PUT /spdx_docs/1
-  # PUT /spdx_docs/1.json
   def update
     @spdx_doc = SpdxDoc.find(params[:id])
 
@@ -74,8 +63,6 @@ class SpdxDocsController < ApplicationController
     end
   end
 
-  # DELETE /spdx_docs/1
-  # DELETE /spdx_docs/1.json
   def destroy
     @spdx_doc = SpdxDoc.find(params[:id])
     @spdx_doc.destroy
