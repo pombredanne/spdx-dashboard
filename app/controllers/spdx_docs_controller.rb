@@ -73,6 +73,9 @@ class SpdxDocsController < ApplicationController
     end
   end
 
+  ## NON RESTful routes
+  ############################################################
+
   def files
     @spdx_doc = SpdxDoc.find(params[:id])
     @package = @spdx_doc.package
@@ -82,5 +85,9 @@ class SpdxDocsController < ApplicationController
       format.html
       format.json { render json: @files }
     end
+  end
+
+  def compare
+    @original_spdx = SpdxDoc.find(params[:id])
   end
 end

@@ -1,5 +1,6 @@
 SpdxDashboard::Application.routes.draw do
   resources :spdx_docs do
+    get :compare, on: :member
     get :files, on: :member
 
     resources :comments
