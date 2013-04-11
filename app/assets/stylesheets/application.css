@@ -17,12 +17,12 @@
 /* LAYOUT */
 .center-container {
   margin: 0 auto;
-  width: 960px;
+  max-width: 960px;
 }
  
 footer { 
-  position: absolute;
-  bottom: 0px;
+  margin-top: 20px;
+  padding: 1px 10px;
 }
 
 /* RAILS SCAFFOLDS */
