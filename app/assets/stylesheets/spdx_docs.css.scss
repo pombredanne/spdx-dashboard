@@ -18,3 +18,18 @@ tr {
 #new_comment {
   textarea { width: 100%; }
 }
+
+table.table-spdx {
+  td { 
+    vertical-align: middle;
+    text-align: center;
+  }
+
+  td.td-main {
+    font-size: 1.7em;
+  }
+
+  td.controls {
+    width: 20%;
+  }
+}
