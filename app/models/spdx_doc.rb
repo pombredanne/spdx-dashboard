@@ -147,7 +147,7 @@ class SpdxDoc < ActiveRecord::Base
 
         if lines[index + 2].match /^FileChecksum: (.+): (.+)/
           package_file.checksum_algorithm = $1
-          package_file.checksum = $2
+          package_file.checksum = $2.delete("\r")
         end
 
         if lines[index + 3].match /^LicenseConcluded: (.+)/
