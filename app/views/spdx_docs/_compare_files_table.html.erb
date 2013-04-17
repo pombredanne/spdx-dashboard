@@ -23,10 +23,10 @@
       <% end %>
 
       <% @file_diffs[:changed].each do |file| %>
-        <tr class="error">
+        <tr class="alert">
           <td class="tr-title"><%= file.name_without_path %></td>
           <td></td>
-          <td></td>
+          <td><%= file.license_concluded.name %></td>
         </tr>
       <% end %>
     </tbody>
