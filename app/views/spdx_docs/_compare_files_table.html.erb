@@ -21,5 +21,13 @@
           <td></td>
         </tr>
       <% end %>
+
+      <% @file_diffs[:changed].each do |file| %>
+        <tr class="error">
+          <td class="tr-title"><%= file.name_without_path %></td>
+          <td></td>
+          <td></td>
+        </tr>
+      <% end %>
     </tbody>
   </table>

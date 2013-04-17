@@ -19,12 +19,26 @@ class PackageFile < ActiveRecord::Base
   has_many :licenses, through: :licensings
   has_many :comments, as: :owner
 
+  after_create :determine_relative_path
+
   def name_without_path
     return name unless name.match /.tar\/(.+)/
     $1
   end
 
+  def name_without_package
+    parts = name.split("/")
+    parts.delete_if { |part| part.include?(self.package.simple_name) || part == "." }
+    parts.join("/")
+  end
+
   def spdx_doc
     package.spdx_doc
+  end
+
+  private
+  def determine_relative_path
+    self.relative_path = self.name_without_package
+    save
   end
 end

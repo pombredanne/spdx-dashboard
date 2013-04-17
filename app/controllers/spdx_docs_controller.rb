@@ -96,13 +96,35 @@ class SpdxDocsController < ApplicationController
     @package2 = @doc2.package
     @files2 = @package2.files
 
-    files1 = @files1.to_a
-    files2 = @files2.to_a
+    added = []
+    deleted = []
+    changed = []
+    unchanged = []
+
+    @files1.each do |file|
+      same_file = @files2.find_by_relative_path(file.relative_path)
+      if same_file.present?
+        unless file.license_concluded == same_file.license_concluded
+          changed << file
+        else
+          unchanged << file
+        end
+      else
+        deleted << file
+      end
+    end
+
+    @files2.each do |file|
+      unless @files1.where(relative_path: file.relative_path).present?
+        added << file
+      end
+    end
+
     @file_diffs = {
-      added: (files2 - files1),
-      deleted: (files1 - files2),
-      changed: 0,
-      unchanged: 0
+      added: added,
+      deleted: deleted,
+      changed: changed,
+      unchanged: unchanged
     }
   end
 end

@@ -22,19 +22,19 @@
 
       <span class="changed">
         <i class="icon-edit"></i>
-        <%= (@doc1.name == @doc2.name) ? 0 : @file_diffs[:changed] %>
+        <%= @file_diffs[:changed].count %>
         changed
       </span>
 
       <span class="unchanged">
         <i class="icon-ok-sign"></i>
-        <%= (@doc1.name == @doc2.name) ? @files1.count : @file_diffs[:changed] %>
+        <%= @file_diffs[:unchanged].count %>
         unchanged
       </span>
     </span>
   </h4>
 
-  <% unless @file_diffs[:added].empty? && @file_diffs[:deleted].empty? %>
+  <% unless @file_diffs[:added].empty? && @file_diffs[:deleted].empty? && @file_diffs[:changed].empty? %>
     <%= render partial: "compare_files_table" %>
   <% else %>
     <div class="alert alert-info">
