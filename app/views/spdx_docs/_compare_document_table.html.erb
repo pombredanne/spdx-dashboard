@@ -49,14 +49,14 @@
       <td class="tr-title">Package License Information</td>
       <td>
         <ul id="licenses" class="unstyled">
-          <% @doc1.licenses.each do |license| %>
+          <% @doc1.licenses.order(:name).each do |license| %>
             <li><%= link_to license.name, license %></li>
           <% end %>
         </ul>
       </td>
       <td>
         <ul id="licenses" class="unstyled">
-          <% @doc2.licenses.each do |license| %>
+          <% @doc2.licenses.order(:name).each do |license| %>
             <li><%= link_to license.name, license %></li>
           <% end %>
         </ul>

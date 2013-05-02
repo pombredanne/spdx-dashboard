@@ -91,7 +91,7 @@
           <td class="tr-title">Licenses</td>
           <td>
             <ul id="licenses" class="unstyled">
-              <% @spdx_doc.licenses.each do |license| %>
+              <% @spdx_doc.licenses.order(:name).each do |license| %>
                 <li><%= link_to license.name, license %></li>
               <% end %>
             </ul>
