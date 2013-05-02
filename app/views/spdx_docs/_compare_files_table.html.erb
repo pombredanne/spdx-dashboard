@@ -8,7 +8,7 @@
 
       <% @file_diffs[:added].each do |file| %>
         <tr class="success">
-          <td class="tr-title"><%= file.name %></td>
+          <td class="tr-title"><%= file.name_without_path %></td>
           <td></td>
           <td></td>
         </tr>
