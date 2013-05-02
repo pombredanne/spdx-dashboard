@@ -1,11 +1,12 @@
 <% @page_title = @spdx_doc.name %>
 
-<h1><%= link_to "SPDX Docs", root_path %> > <%= @page_title %></h1>
+<h1><%= link_to "Docs", root_path %> > <%= @page_title %></h1>
 
 <hr>
 
 <div class="row-fluid">
   <h3>Document Info</h3>
+
   <div class="span6">
     <table class="table table-bordered">
       <tbody>
@@ -30,18 +31,26 @@
   </div>
 
   <div class="span5">
-    <%= form_for [@spdx_doc, @spdx_comment] do |f| %>
-        <%= f.text_area :content, rows: 5, placeholder: "Comment on this SPDX document" %>
-        <%= f.submit "Add comment", class: "btn btn-primary" %>
-        <% if @spdx_doc.comments.present? %>
-          <%= link_to "View comments (#{@spdx_doc.comments.count})", spdx_doc_comments_path(@spdx_doc), class: "btn" %>
+    <ul class="nav nav-tabs nav-stacked">
+      <li>
+        <%= link_to @spdx_doc.upload.url do %>
+          <i class="icon-download"></i>
+          Download
         <% end %>
+      </li>
+      <li>
+        <%= link_to spdx_doc_comments_path(@spdx_doc) do %>
+          <i class="icon-comment"></i>
+          Comments (<%= @spdx_doc.comments.count %>)
+        <% end %>
+      </li>
+    </ul>
+    <%= form_for [@spdx_doc, @spdx_comment] do |f| %>
+      <div class="input-append">
+        <%= f.text_field :content, placeholder: "Comment on this document", class: "span10" %>
+        <%= f.submit "Add comment", class: "btn btn-primary" %>
+      </div>
     <% end %>
-  </div>
-
-  <div class="span6">
-    <%= link_to "Download .tag", @spdx_doc.upload.url, class: "btn" %>
-
   </div>
 </div>
 
@@ -101,16 +110,25 @@
   </div>
 
   <div class="span5">
+    <ul class="nav nav-tabs nav-stacked">
+      <li>
+        <%= link_to files_spdx_doc_path(@spdx_doc) do %>
+          <i class="icon-file-alt"></i>
+          Files (<%= @package.files.count %>)
+        <% end %>
+      </li>
+      <li>
+        <%= link_to package_comments_path(@package) do %>
+          <i class="icon-comment"></i>
+          Comments (<%= @package.comments.count %>)
+        <% end %>
+      </li>
+    </ul>
     <%= form_for [@package, @package_comment] do |f| %>
-      <%= f.text_area :content, rows: 5, placeholder: "Comment on this package" %>
-      <%= f.submit "Add comment", class: "btn btn-primary" %>
-      <% if @package.comments.present? %>
-        <%= link_to "View comments (#{@package.comments.count})", package_comments_path(@package), class: "btn" %>
-      <% end %>
+      <div class="input-append">
+        <%= f.text_field :content, placeholder: "Comment on this package", class: "span10" %>
+        <%= f.submit "Add comment", class: "btn btn-primary" %>
+      </div>
     <% end %>
-  </div>
-
-  <div class="span6">
-    <%= link_to "View files (#{@package.files.count})", files_spdx_doc_path(@spdx_doc), class: "btn" %>
   </div>
 </div>
