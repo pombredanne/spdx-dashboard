@@ -104,10 +104,10 @@ class SpdxDocsController < ApplicationController
     @files1.each do |file|
       same_file = @files2.find_by_relative_path(file.relative_path)
       if same_file.present?
-        unless file.license_concluded == same_file.license_concluded
-          changed << file
-        else
+        if file.checksum == same_file.checksum
           unchanged << file
+        else
+          changed << file
         end
       else
         deleted << file
@@ -115,7 +115,7 @@ class SpdxDocsController < ApplicationController
     end
 
     @files2.each do |file|
-      unless @files1.where(relative_path: file.relative_path).present?
+      unless @files1.find_by_relative_path(file.relative_path).present?
         added << file
       end
     end
