@@ -24,3 +24,7 @@ group :development do
   gem 'rails-erd'
   gem 'annotate'
 end
+
+group :production do
+  gem 'passenger'
+end
