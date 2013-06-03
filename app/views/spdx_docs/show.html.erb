@@ -47,8 +47,8 @@
     </ul>
     <%= form_for [@spdx_doc, @spdx_comment] do |f| %>
       <div class="input-append">
-        <%= f.text_field :content, placeholder: "Comment on this document", class: "span10" %>
-        <%= f.submit "Add comment", class: "btn btn-primary" %>
+        <%= f.text_field :content, placeholder: "Comment on this document", class: "span10", disabled: true %>
+        <%= f.submit "Add comment", class: "btn btn-primary", disabled: true %>
       </div>
     <% end %>
   </div>
@@ -126,8 +126,8 @@
     </ul>
     <%= form_for [@package, @package_comment] do |f| %>
       <div class="input-append">
-        <%= f.text_field :content, placeholder: "Comment on this package", class: "span10" %>
-        <%= f.submit "Add comment", class: "btn btn-primary" %>
+        <%= f.text_field :content, placeholder: "Comment on this package", class: "span10", disabled: true %>
+        <%= f.submit "Add comment", class: "btn btn-primary", disabled: true %>
       </div>
     <% end %>
   </div>

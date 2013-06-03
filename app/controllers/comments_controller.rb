@@ -12,20 +12,26 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = Comment.new(params[:comment])
+    ########################################
+    # COMMENT CREATE TEMPORARILY DISABLED  #
+    ########################################
 
-    @comment.owner = @owner
+    redirect_to root_path
+    
+    # @comment = Comment.new(params[:comment])
 
-    respond_to do |format|
-      redirect = @owner.is_a?(SpdxDoc) ? @owner : @owner.spdx_doc
-      if @comment.save
-        format.html { redirect_to redirect, notice: 'Your comment was added successfully.' }
-        format.json { render json: @comment, status: :created, location: redirect }
-      else
-        format.html { redirect_to redirect }
-        format.json { render json: @comment, status: :unprocessable_entity }
-      end
-    end
+    # @comment.owner = @owner
+
+    # respond_to do |format|
+    #   redirect = @owner.is_a?(SpdxDoc) ? @owner : @owner.spdx_doc
+    #   if @comment.save
+    #     format.html { redirect_to redirect, notice: 'Your comment was added successfully.' }
+    #     format.json { render json: @comment, status: :created, location: redirect }
+    #   else
+    #     format.html { redirect_to redirect }
+    #     format.json { render json: @comment, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   private
