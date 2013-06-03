@@ -3,3 +3,17 @@ class OptionalField < ActiveRecord::Base
 
   belongs_to :owner, polymorphic: true
 end
+
+# == Schema Information
+#
+# Table name: optional_fields
+#
+#  id         :integer          not null, primary key
+#  owner_id   :integer
+#  owner_type :string(255)
+#  field_name :string(255)
+#  field_data :text
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+

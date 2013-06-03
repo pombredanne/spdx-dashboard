@@ -13,3 +13,19 @@ class License < ActiveRecord::Base
     license.present? ? license : License.create(opts)
   end
 end
+
+# == Schema Information
+#
+# Table name: licenses
+#
+#  id              :integer          not null, primary key
+#  content         :text
+#  notice          :text
+#  name            :string(255)
+#  osi_approved    :boolean
+#  standard_header :text
+#  cross_reference :string(255)
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+

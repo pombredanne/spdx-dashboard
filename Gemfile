@@ -8,22 +8,19 @@ gem 'mysql2'
 gem "twitter-bootstrap-rails"
 gem "font-awesome-rails"
 
+# Etc
 gem 'paperclip' # attachments
-
 gem 'kaminari' # pagination
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'jquery-rails'
-
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   gem 'therubyracer', :platforms => :ruby
-  gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
-
   gem 'uglifier', '>= 1.0.3'
 end
 
 group :development do
   gem 'rails-erd'
+  gem 'annotate'
 end

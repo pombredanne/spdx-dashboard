@@ -42,3 +42,25 @@ class PackageFile < ActiveRecord::Base
     save
   end
 end
+
+# == Schema Information
+#
+# Table name: package_files
+#
+#  id                   :integer          not null, primary key
+#  package_id           :integer
+#  name                 :string(255)
+#  file_type            :string(255)
+#  copyright_text       :string(255)
+#  artifact_name        :string(255)
+#  artifact_homepage    :string(255)
+#  artifact_uri         :string(255)
+#  license_concluded_id :string(255)
+#  license_declared_id  :string(255)
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  checksum             :string(255)
+#  checksum_algorithm   :string(255)
+#  relative_path        :string(255)
+#
+

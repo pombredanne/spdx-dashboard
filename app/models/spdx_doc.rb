@@ -187,3 +187,22 @@ class SpdxDoc < ActiveRecord::Base
     save
   end
 end
+
+# == Schema Information
+#
+# Table name: spdx_docs
+#
+#  id                  :integer          not null, primary key
+#  spec_version        :string(255)
+#  data_license        :string(255)
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  upload_file_name    :string(255)
+#  upload_content_type :string(255)
+#  upload_file_size    :integer
+#  upload_updated_at   :datetime
+#  document_comment    :text
+#  creator_comment     :text
+#  generated_at        :datetime
+#
+

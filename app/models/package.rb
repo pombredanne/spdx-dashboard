@@ -10,3 +10,26 @@ class Package < ActiveRecord::Base
     name.split(".tar").first
   end
 end
+
+# == Schema Information
+#
+# Table name: packages
+#
+#  id                   :integer          not null, primary key
+#  spdx_doc_id          :integer
+#  name                 :string(255)
+#  filename             :string(255)
+#  download_location    :string(255)
+#  checksum_id          :integer
+#  copyright            :text
+#  version              :string(255)
+#  description          :text
+#  summary              :text
+#  originator           :string(255)
+#  supplier             :string(255)
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  license_concluded_id :integer
+#  license_declared     :string(255)
+#
+
