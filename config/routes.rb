@@ -8,10 +8,11 @@ SpdxDashboard::Application.routes.draw do
   end
 
   resources :packages do
+    get "find", on: :collection
     resources :package_files, path: "files"
     resources :comments
   end
-  
+
   resources :package_files
 
   resources :licenses
