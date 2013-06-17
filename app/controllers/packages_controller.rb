@@ -5,7 +5,7 @@ class PackagesController < ApplicationController
   def find
     params[:checksum] || raise(ArgumentError)
 
-    checksum = Checksum.where(owner_type: "Package").find_by_value(params[:checksum])
+    checksum = Checksum.of_type(:package).find_by_value(params[:checksum])
     checksum || raise(ActiveRecord::RecordNotFound)
 
     @package = checksum.owner 

@@ -1,6 +1,10 @@
 class Checksum < ActiveRecord::Base
   attr_accessible :algorithm, :owner_id, :owner_type, :value
   belongs_to :owner, polymorphic: true
+
+  def self.of_type type 
+    where(owner_type: type.to_s.capitalize)
+  end
 end
 
 # == Schema Information
