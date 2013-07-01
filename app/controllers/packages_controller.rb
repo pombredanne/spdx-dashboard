@@ -5,10 +5,8 @@ class PackagesController < ApplicationController
   def find
     params[:checksum] || raise(ArgumentError)
 
-    checksum = Checksum.of_type(:package).find_by_value(params[:checksum])
-    checksum || raise(ActiveRecord::RecordNotFound)
-
-    @package = checksum.owner 
+    @package = Package.find_by_checksum(params[:checksum])
+    @package || raise(ActiveRecord::RecordNotFound)
 
     render json: @package
   end
