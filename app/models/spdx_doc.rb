@@ -96,6 +96,11 @@ class SpdxDoc < ActiveRecord::Base
         package.originator = $1.delete("\r")
       end
 
+      if line.match /^PackageChecksum:\W(.+):\W(.+)/
+        package.checksum_algorithm = $1.delete("\r")
+        package.checksum = $2.delete("\r")
+      end
+
       if line.match /^PackageDescription: <text>(.+)<\/text>/
         package.description = $1.delete("\r")
       end

@@ -13,7 +13,6 @@ class Package < ActiveRecord::Base
     :version)
 
   belongs_to :spdx_doc
-  has_one :checksum, as: :owner
   has_many :optional_fields, as: :owner
   has_many :files, class_name: "PackageFile"
   has_many :comments, as: :owner
@@ -43,5 +42,7 @@ end
 #  updated_at           :datetime         not null
 #  license_concluded_id :integer
 #  license_declared     :string(255)
+#  checksum             :string(255)
+#  checksum_algorithm   :string(255)
 #
 
