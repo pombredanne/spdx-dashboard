@@ -11,16 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130701172153) do
-
-  create_table "checksums", :force => true do |t|
-    t.integer  "owner_id"
-    t.string   "owner_type"
-    t.string   "algorithm"
-    t.string   "value"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
+ActiveRecord::Schema.define(:version => 20130701174535) do
 
   create_table "comments", :force => true do |t|
     t.integer  "owner_id"
@@ -90,7 +81,6 @@ ActiveRecord::Schema.define(:version => 20130701172153) do
     t.string   "name"
     t.string   "filename"
     t.string   "download_location"
-    t.integer  "checksum_id"
     t.text     "copyright"
     t.string   "version"
     t.text     "description"
