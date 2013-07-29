@@ -58,5 +58,9 @@ module SpdxDashboard
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    # Enables/disables uploads of SPDX through the web frontend
+    config.allow_client_uploads = false
+
   end
 end

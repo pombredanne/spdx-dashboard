@@ -47,7 +47,10 @@
           <%= link_to "Dashboard", root_path, class: "brand" %>
           <div class="container-fluid nav-collapse">
             <ul class="nav">
-              <li><%= render partial: "spdx_docs/upload_form", locals: {spdx_doc: @new_spdx} %></li>
+              <li>
+                <% if @allow_client_uploads %>
+                  <%= render partial: "spdx_docs/upload_form", locals: {spdx_doc: @new_spdx} %></li>
+                <% end %>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
