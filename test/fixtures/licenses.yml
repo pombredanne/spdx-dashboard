@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  content: MyText
+  notice: MyText
+  name: MyString
+  osi_approved: false
+  standard_header: MyText
+  cross_reference: MyString
+
+two:
+  content: MyText
+  notice: MyText
+  name: MyString
+  osi_approved: false
+  standard_header: MyText
+  cross_reference: MyString

@@ -1,0 +1,106 @@
+// Place all the styles related to the spdx_docs controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#upload_form {
+  .error {
+    font-weight: bold;
+    color: red;
+  }
+}
+
+.form-search { 
+  input { width: 175px !important; }
+
+  margin: 0px; 
+}
+
+tr {
+  .tr-title { 
+    background-color: rgb(249, 249, 249);
+  }
+}
+th { 
+  text-align: center;
+  border: 0; 
+}
+#new_spdx_doc { display: none; }
+#new_comment {
+  textarea { width: 100%; }
+}
+
+table.table-spdx {
+  td { 
+    text-align: center;
+  }
+
+  td.td-timestamp {
+    border-right-color: transparent;
+    padding-top: 0px;
+    padding-left: 0px;
+    font-weight: bold;
+    color: #9da0a4;
+
+    p {
+      text-align: center;
+      padding-top: 0px;
+      padding-left: 0px;
+      border: 1px solid rgb(225,225,232);
+      border-top: none;
+      border-left: none;
+    }
+  }
+
+  td.td-main {
+    line-height: 2em;
+    font-size: 2em;
+    padding: 0px;
+    border-left-color: transparent;
+
+    .corner-heading {
+      vertical-align: middle;
+      height: 100%;
+    }
+  }
+
+  td.td-controls {
+    width: 20%;
+  }
+}
+
+#doc_select {
+  table {
+    width: 100%;
+    text-align: center;
+    font-size: 1.2em;
+    td {
+      cursor: pointer;
+      border-bottom: 1px solid rgb(221, 221, 221);
+    }
+  }
+}
+#compare {
+  .alert-info {
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+  }
+}
+.comparisons {
+  float: right;
+
+  span {
+    padding-left: 10px;
+  }
+  .deleted {
+    color: rgb(185, 74, 72);
+  }
+
+  .added {
+    color: rgb(70, 136, 71);
+  }
+
+  .changed {
+    color: rgb(192, 152, 83);
+  }
+}

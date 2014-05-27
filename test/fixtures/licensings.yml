@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  license_id: 1
+  file_id: 1
+  conjunctive: false
+  official: false
+
+two:
+  license_id: 1
+  file_id: 1
+  conjunctive: false
+  official: false

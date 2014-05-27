@@ -1,0 +1,5 @@
+<% @page_title = "Docs" %>
+<h1><%= @page_title %> (<%= @spdx_docs.count %>)</h1>
+<%= render partial: "spdx_table", locals: {spdx_docs: @spdx_docs} %>
+
+<%= render partial: "doc_select_box" %>

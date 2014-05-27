@@ -1,0 +1,12 @@
+<% @page_title = "Comments" %>
+
+<h1><%= raw comments_header(@owner) %></h1>
+
+<hr>
+
+<%= render partial: "comments/comment_table.html.erb", locals: {comments: @comments} %>
+
+<%= form_for [@owner, @comment] do |f| %>
+  <%= f.text_area :content, rows: 10, placeholder: "Add a new comment", disabled: true %>
+  <%= f.submit "Add comment", class: "btn btn-primary", disabled: true %>
+<% end %>

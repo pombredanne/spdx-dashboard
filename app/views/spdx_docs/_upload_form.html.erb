@@ -1,0 +1,13 @@
+<div id="upload_form">
+  <%= form_for spdx_doc, html: { class: "form-inline", multipart: true } do |f| %>
+    <%= f.file_field :upload %>
+  <% end %>
+  <button class="btn-upload btn btn-primary">
+    <i class="icon-cloud-upload"></i>
+    Upload
+  </button>
+  <span class="error" style="display: none;">
+    <i class="icon-exclamation-sign"></i>
+    File must be .tag
+  <span>
+</div>

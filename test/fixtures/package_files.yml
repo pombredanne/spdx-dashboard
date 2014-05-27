@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  package_id: 1
+  name: MyString
+  type: 
+  checksum_id: MyString
+  copyright_text: MyString
+  copyright_text: MyString
+  artifact_name: MyString
+  artifact_homepage: MyString
+  artifact_uri: MyString
+  license_concluded_id: MyString
+  license_declared_id: MyString
+
+two:
+  package_id: 1
+  name: MyString
+  type: 
+  checksum_id: MyString
+  copyright_text: MyString
+  copyright_text: MyString
+  artifact_name: MyString
+  artifact_homepage: MyString
+  artifact_uri: MyString
+  license_concluded_id: MyString
+  license_declared_id: MyString

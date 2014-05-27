@@ -1,0 +1,45 @@
+<% @page_title = "Compare" %>
+<h2>Comparing <%= link_to @doc1.name, @doc1 %> (1) to <%= link_to @doc2.name, @doc2 %> (2)</h4>
+<div id="compare" class="span12">
+  <h4>Document + Package Changes</h4>
+  <%= render partial: "compare_document_table" %>
+
+
+  <h4>
+    File changes
+
+    <span class="comparisons">
+      <span class="added">
+        <i class="icon-plus-sign"></i>
+        <%= @file_diffs[:added].count %>
+        added
+      </span>
+
+      <span class="deleted">
+        <i class="icon-minus-sign"></i>
+        <%= @file_diffs[:deleted].count %>
+        deleted
+      </span>
+
+      <span class="changed">
+        <i class="icon-edit"></i>
+        <%= @file_diffs[:changed].count %>
+        changed
+      </span>
+
+      <span class="unchanged">
+        <i class="icon-ok-sign"></i>
+        <%= @file_diffs[:unchanged].count %>
+        unchanged
+      </span>
+    </span>
+  </h4>
+
+  <% unless @file_diffs[:added].empty? && @file_diffs[:deleted].empty? && @file_diffs[:changed].empty? %>
+    <%= render partial: "compare_files_table" %>
+  <% else %>
+    <div class="alert alert-info">
+      No file changes found.
+    </div>
+  <% end %>
+</div>

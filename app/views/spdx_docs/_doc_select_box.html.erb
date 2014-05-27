@@ -1,0 +1,24 @@
+<div id="doc_select" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="docSelectModal" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="docSelectModal">Choose document for comparison</h3>
+  </div>
+
+  <div class="modal-body">
+    <table class="table-hover">
+      <% @spdx_docs.each do |spdx_doc| %>
+        <tr>
+          <td data-id="<%= spdx_doc.id %>">
+            <button class="btn btn-link">
+              <%= spdx_doc.name %>
+            </button>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+  </div>
+</div>
